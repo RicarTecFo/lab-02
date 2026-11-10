@@ -1,0 +1,30 @@
+@let val = loginFormGroup.controls;
+
+<form [formGroup]="loginFormGroup" (ngSubmit)="loginUser()">
+
+  <div>
+    <label for="">
+      Nombre de usuario
+      <input type="text" formControlName="username">
+    </label>
+    @if (val.username.hasError('required') && val.username.touched) {
+      <div class="error">
+        Se requiere el nombre de usuario
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="">
+      Contraseña
+      <input type="password" formControlName="password">
+    </label>
+    @if (val.password.hasError('required') && val.password.touched) {
+      <div class="error">
+        Se requiere la contraseña
+      </div>
+    }
+  </div>
+  <button type="submit" [disabled]="loginFormGroup.invalid">Ingresar</button>
+  <a routerLink="/register">¿No tiene cuenta? Crear una.</a>
+</form>

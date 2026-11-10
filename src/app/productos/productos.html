@@ -1,0 +1,53 @@
+<article>
+    <section>
+        <button routerLink="/dashboard">Volver</button>
+        <h2>Productos</h2>
+        <h3>Panel de productos</h3>
+        <form [formGroup]="productForm">
+            <input type="hidden" formControlName="id">
+            <input type="text" formControlName="nombre" placeholder="Nombre">
+            <input type="text" formControlName="descripcion" placeholder="Descripción">
+            <input type="number" formControlName="precio" placeholder="Precio">
+            <input type="number" formControlName="cantidad" placeholder="Cantidad">
+            <input type="number" formControlName="categoriaId" placeholder="ID de Categoría">
+            @if (!isEditing) {
+            <button type="button" (click)="createProduct()">Crear</button>
+            } @else {
+                <button type="button" (click)="updateProduct()">Actualizar</button>
+            }
+        </form> 
+
+        <h3>Lista de Productos</h3>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                @for (product of productList; track product.id) {
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.nombre }}</td>
+                    <td>{{ product.descripcion }} </td>
+                    <td>{{ product.precio }}</td>
+                    <td>{{ product.cantidad }}</td>
+                    <td>{{ product.categoriaId }}</td>
+                    <td>
+                        <button (click)="selectProduct(product)">Editar</button>
+                        <button (click)="deleteProduct()">Borrar</button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <tbody>
+            <tr></tr>
+        </tbody>
+    </section>
+
+</article>

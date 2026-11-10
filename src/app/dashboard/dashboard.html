@@ -1,0 +1,10 @@
+<h1>Bienvenido(a) al panel</h1>
+
+<button routerLink="/products">Productos</button>
+<button routerLink="/categories">Categorías</button>
+
+@if(authService.isAdmin()) {
+  <button routerLink="/users">
+    Usuarios
+  </button>
+}

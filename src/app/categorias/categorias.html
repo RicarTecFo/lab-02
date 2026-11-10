@@ -1,0 +1,45 @@
+<article>
+    <section>
+        <button routerLink="/dashboard">Volver</button>
+        <h2>Categorías</h2>
+        <h3>Panel de categorías</h3>
+        <form [formGroup]="categoryForm">
+            <input type="hidden" formControlName="id">
+            <input type="text" formControlName="nombre" placeholder="Nombre">
+            <input type="text" formControlName="descripcion" placeholder="Descripción">
+            @if (!isEditing) {
+            <button type="button" (click)="createCategory()">Crear</button>
+            } @else {
+                <button type="button" (click)="updateCategory()">Actualizar</button>
+            }
+        </form> 
+
+        <h3>Lista de Categorías</h3>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                @for (category of categoryList; track category.id) {
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.nombre }}</td>
+                    <td>{{ category.descripcion }}</td>
+
+                    <td>
+                        <button (click)="selectCategories(category)">Editar</button>
+                        <button (click)="deleteCategory()">Borrar</button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <tbody>
+            <tr></tr>
+        </tbody>
+    </section>
+
+</article>

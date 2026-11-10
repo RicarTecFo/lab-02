@@ -1,0 +1,58 @@
+@let val = registerFormGroup.controls;
+
+<form [formGroup]="registerFormGroup" (ngSubmit)="registerUser()">
+
+  <div>
+    <label for="">
+      Username
+      <input type="text" formControlName="username">
+    </label>
+    @if (val.username.hasError('required') && val.username.touched) {
+      <div class="error">
+        Se requiere un nombre de usuario
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="">
+      Email
+      <input type="email" formControlName="email">
+    </label>
+    @if (val.email.touched) {
+      @if (val.email.hasError('required')) {
+        <div class="error">Se requiere un correo electrónico</div> 
+    } @else if (val.email.hasError('email')) {
+      <div class="error">
+      El correo electrónico es inválido
+      </div>
+      }
+    }
+  </div>
+
+  <div>
+    <label for="">
+      Password
+      <input type="password" formControlName="password">
+    </label>
+    @if (val.password.hasError('required') && val.password.touched) {
+      <div class="error">
+        Se requiere una contraseña
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="">
+      Confirm Password
+      <input type="password" formControlName="confirmPassword">
+    </label>
+    @if (val.confirmPassword.hasError('required') && val.confirmPassword.touched) {
+      <div class="error">
+        Confirme la contraseña
+      </div>
+    }
+  </div>
+  <button type="submit" [disabled]="registerFormGroup.invalid">Register</button>
+  <a routerLink="/log-in">¿Ya tiene cuenta? Iniciar sesión.</a>
+</form>
